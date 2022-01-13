@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  postgres2:
+    container_name: postgres2
+#    hostname: postgres2
+    image: postgres:latest
+    env_file:
+      - todo_project/docker.env
+    ports:
+      - "0.0.0.0:5432:5432"
+    volumes:
+      - "postgresql-data:/var/lib/postgresql/data"
+
+
+  todo_app:
+    container_name: todo_app
+#    hostname: todo_app
+    build:
+      context: .
+      args:
+        REPO_PATH: ./
+    env_file:
+      - todo_project/docker.env
+    environment:
+      - "COMMANDS=0"
+    volumes:
+      - .:/srv/app
+    ports:
+      - "0.0.0.0:8080:8080"
+    depends_on:
+      - postgres2
+    working_dir: /srv/app
+
+volumes:
+  postgresql-data:
+
+
