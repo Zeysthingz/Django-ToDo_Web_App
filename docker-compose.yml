@@ -11,7 +11,6 @@ services:
     volumes:
       - "postgresql-data:/var/lib/postgresql/data"
 
-
   todo_app:
     container_name: todo_app
 #    hostname: todo_app
@@ -19,11 +18,13 @@ services:
       context: .
       args:
         REPO_PATH: ./
+        dockerfile: Dockerfile
     env_file:
       - todo_project/docker.env
     environment:
-      - "COMMANDS=0"
+      - "COMMANDS=1"
     volumes:
+      - static-data:/srv/public
       - .:/srv/app
     ports:
       - "0.0.0.0:8080:8080"
@@ -33,5 +34,6 @@ services:
 
 volumes:
   postgresql-data:
+  static-data:
 
 
