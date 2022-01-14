@@ -33,6 +33,7 @@ SECRET_KEY = env("SECRET_KEY")
 # DEBUG = True
 DEBUG = env("DEBUG", bool, False)
 
+#hello wold
 
 ALLOWED_HOSTS = env("ALLOWED_HOSTS", cast=list)
 ADMINS = (env.tuple("ADMIN", str),)
