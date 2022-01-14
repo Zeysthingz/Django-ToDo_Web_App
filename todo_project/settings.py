@@ -31,8 +31,8 @@ SECRET_KEY = env("SECRET_KEY")
 # DEBUG = True
 DEBUG = env("DEBUG", bool, False)
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0", "localhost", env("DOMAIN")]
+
+ALLOWED_HOSTS = env("ALLOWED_HOSTS", cast=list)
 ADMINS = (env.tuple("ADMIN", str),)
 
 # Application definition
